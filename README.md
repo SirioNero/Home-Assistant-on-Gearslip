@@ -84,7 +84,7 @@ Plancia mostra le tue plance di Home Assistant vere, a tutto schermo, esattament
 - **La plancia** occupa tutto lo schermo. Si toccano le schede come sul telefono e si scorre col dito.
 - **Il menu** compare da sinistra: si apre con il pulsante ☰ di Home Assistant, in alto a sinistra, oppure con il ☰ di Plancia in alto a destra (Gearslip lo sbiadisce quando non si tocca lo schermo). Elenca le plance nello stesso ordine della barra laterale di Home Assistant, comprese Energia, Mappa, Attività e Cronologia. Se ne sceglie una e il menu si chiude mostrandola. Anche un tocco sulla plancia accanto al menu lo chiude.
 - **Plancia predefinita** (nel menu) è la plancia che si apre salendo in auto. Finché non la scegli è quella che Home Assistant apre da solo.
-- **Dimensione** (nel menu) ingrandisce o rimpicciolisce la plancia, dal 60% al 150%: più grande si legge meglio alla guida, più piccola ci stanno più schede.
+- **Dimensione** (nel menu) ingrandisce o rimpicciolisce la plancia, dal 60% al 150%: più grande si legge meglio alla guida, più piccola ci stanno più schede in una volta.
 - **Ricarica la plancia** ricarica la pagina da capo.
 - **Indietro** chiude un dialogo o esce da una sottovista.
 
