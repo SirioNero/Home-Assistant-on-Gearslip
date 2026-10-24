@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Plancia</string>
+    <string name="tagline">Home Assistant sullo schermo dell’auto, tramite Gearslip.</string>
+    <string name="label_home">Indirizzo di casa</string>
+    <string name="label_remote">Indirizzo da fuori casa (facoltativo)</string>
+    <string name="label_token">Token di accesso a lungo termine</string>
+    <string name="hint_home">http://homeassistant.local:8123</string>
+    <string name="hint_remote">https://…ui.nabu.casa oppure l’indirizzo VPN</string>
+    <string name="hint_token">Incolla qui il token</string>
+    <string name="help_token">Crealo in Home Assistant: il tuo profilo, scheda Sicurezza, Token di accesso a lungo termine.</string>
+    <string name="help_remote">In auto il telefono è fuori dalla rete di casa: Plancia prova prima l’indirizzo di casa, poi quello remoto.</string>
+    <string name="save">Salva e prova la connessione</string>
+    <string name="help_car">In auto apri Gearslip: Plancia compare tra le app.</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Host autorizzati nella build release: Gearslip ufficiale (digest SHA-256 del certificato, poi il pacchetto).
+         Se compili Gearslip da solo, sostituisci il digest con quello del tuo APK
+         (apksigner verify --print-certs Gearslip.apk). La build debug accetta qualsiasi host. -->
+    <string-array name="hosts_allowlist">
+        <item>4cc56ebdd13a54d260eca9b7e2b2ae6b30e2f225bfda8f508f0709edf084948b,app.seb3thehacker.gearslip</item>
+    </string-array>
+</resources>
