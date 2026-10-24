@@ -166,6 +166,9 @@ class DashboardDisplay(
         if (vd != null && buildKey() == builtKey) {
             // Stessa misura: la pagina resta com'è, cambia solo dove viene disegnata.
             vd.surface = s
+            // Una plancia ferma non ridisegnerebbe niente: la nuova superficie resterebbe nera.
+            presentation?.window?.decorView?.invalidate()
+            web?.invalidate()
         } else {
             rebuild()
         }

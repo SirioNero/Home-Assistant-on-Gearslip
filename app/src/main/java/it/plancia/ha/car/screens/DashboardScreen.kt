@@ -11,8 +11,9 @@ import it.plancia.ha.car.CarDeps
 import it.plancia.ha.car.CarIcons
 
 /**
- * La plancia di Home Assistant a tutto schermo: nessun pannello sopra, solo il pulsante delle plance
- * in alto a destra, che Gearslip sbiadisce quando non si tocca niente.
+ * La plancia di Home Assistant a tutto schermo. Il menu delle plance si apre col pulsante ☰ di
+ * Home Assistant, in alto a sinistra, o con il ☰ di Plancia in alto a destra, che Gearslip sbiadisce
+ * quando non si tocca niente. Quest'ultimo è solo un'icona, per coprire poco la barra di Home Assistant.
  */
 class DashboardScreen(carContext: CarContext, private val deps: CarDeps) : Screen(carContext) {
 
@@ -32,7 +33,6 @@ class DashboardScreen(carContext: CarContext, private val deps: CarDeps) : Scree
 
     override fun onGetTemplate(): Template {
         val menu = Action.Builder()
-            .setTitle("Plance")
             .setIcon(CarIcons.menu)
             .setOnClickListener { openMenu() }
             .build()

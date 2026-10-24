@@ -6,16 +6,18 @@
 
 Home Assistant on your car screen, through [Gearslip](https://github.com/twinksoftware/Gearslip).
 
-On the left, a list that Gearslip draws with its own templates: your Home Assistant dashboards, rooms and labels, then the entities. On the right, a view that Plancia draws itself on the surface Gearslip lends to map apps: every light that is on lights up its tile in its real color, covers show their slats, rings show brightness and position, and each room sums up what is on. Tap a tile to control it, swipe to scroll.
+Plancia shows your real Home Assistant dashboards, full screen, exactly as they look in the browser or in the official app: same cards, same views, same theme. Home Assistant draws them itself; Plancia puts its frontend on the surface Gearslip lends to map apps and signs it in with your token, so it never asks you to log in.
 
 The app’s interface is in Italian for now.
 
 ### Getting around
 
-- **Home**: dashboards, Rooms and Labels on the left; all rooms on the right.
-- **A dashboard**: its views become rooms you can open, in the same order as in Home Assistant. Auto-generated dashboards become one view per area.
-- **A room or a view**: all its entities. Lights, plugs, fans and covers toggle with a tap, and so do scenes and media players. Scripts, buttons and vacuums ask for confirmation, so an accidental tap while driving doesn’t start anything. Locks and alarms are read-only.
-- **Aggiorna** (Refresh, at the top) reloads dashboards, areas and labels.
+- **The dashboard** fills the screen. Tap the cards as you would on the phone, and swipe to scroll.
+- **The menu** slides in from the left: open it with Home Assistant’s own ☰ button at the top left, or with Plancia’s ☰ at the top right (Gearslip fades it out when you don’t touch the screen). It lists your dashboards in the same order as Home Assistant’s sidebar, including Energy, Map, Activity and History. Pick one and the menu closes on it. Tapping the dashboard beside the menu closes it too.
+- **Plancia predefinita** (Default dashboard, in the menu) is the dashboard that opens when you get in the car. Until you pick one, it’s the one Home Assistant opens on its own.
+- **Dimensione** (Size, in the menu) makes the dashboard bigger or smaller, from 60% to 150%: bigger reads better while driving, smaller fits more cards.
+- **Ricarica la plancia** (Reload) reloads the page from scratch.
+- **Back** closes a dialog or leaves a subview.
 
 ### Installation
 
@@ -40,18 +42,20 @@ Avoid a plain `http://` remote address without a VPN: your token would travel un
 
 ### Troubleshooting
 
-- **The list on the left shows up, but the right side stays empty.** Gearslip may lend the surface only to some app categories. In the manifest, add `<category android:name="androidx.car.app.category.POI" />` next to the IOT one.
+- **The screen stays dark or the page doesn’t load.** The dashboard runs in Android System WebView: update it from the Play Store (or your phone’s app store). If Home Assistant answers with an error, the message shows on the car screen; tap it to try again.
 - **Gearslip says “host not accepted”.** The debug build accepts any host; the release build accepts only the official Gearslip. If you built Gearslip yourself, put its digest in `res/values/arrays.xml`.
 - **Useful logs**: `adb logcat -s Plancia CarApp.Val`.
 
 ### Limitations
 
 - It works on Gearslip. Official Android Auto doesn’t let a smart home app draw its own view: there, templates with a surface are reserved for navigation apps.
-- The token stays in the app’s private preferences on the phone.
+- Gearslip passes taps, swipes and flings, not raw touches: long presses and pinch zoom don’t reach the dashboard. Use **Dimensione** for the size.
+- The car has no keyboard for the page, so text fields (search, Assist) can’t be typed into.
+- The token stays in the app’s private preferences on the phone, and only goes to your Home Assistant pages: Plancia opens no other site.
 
 ### Building
 
-Every push to the `main` branch builds the app on GitHub Actions and, if the `PLANCIA_KEYSTORE` secret (the signing key, base64-encoded) is set, publishes a release with both APKs. Pull requests are built as a check, unsigned and without a release.
+Every push builds the app on GitHub Actions. On the `main` branch, if the `PLANCIA_KEYSTORE` secret (the signing key, base64-encoded) is set, it also publishes a release with both APKs; other branches and pull requests are built only as a check.
 
 Locally: open the folder in Android Studio and press Run. Without `app/plancia.keystore`, the app is signed with your computer’s debug key.
 
@@ -62,27 +66,27 @@ Bug reports and pull requests are welcome, especially from people trying Plancia
 | File | What it contains |
 |---|---|
 | `data/HaClient.kt` | WebSocket connection to Home Assistant |
-| `data/HaRepository.kt` | States, areas, labels, dashboards, reconnection |
-| `data/Lovelace.kt` | Reading the views of a dashboard |
-| `logic/Entities.kt` | Italian texts, commands, what to show and in which order |
-| `car/render/TilePainter.kt` | How tiles look |
-| `car/render/Colors.kt`, `Palette.kt` | Colors and day/night themes |
-| `car/render/SurfaceRenderer.kt` | Grid, scrolling, taps on the surface |
-| `car/screens/` | The in-car screens |
+| `data/HaRepository.kt` | Which address answers (home or remote), dashboards, reconnection |
+| `data/Panels.kt` | The dashboards in the order of Home Assistant’s sidebar |
+| `car/web/DashboardDisplay.kt` | The Home Assistant frontend on the car surface: virtual display, WebView, sign-in, taps and scrolling |
+| `car/web/PageScripts.kt` | The JavaScript added to the page: hidden sidebar, ☰ button, scrolling |
+| `car/screens/` | The in-car screens: full-screen dashboard, menu, default dashboard, size |
 | `phone/SettingsActivity.kt` | The settings screen on the phone |
 
 ## Italiano
 
 Home Assistant sullo schermo dell’auto, tramite [Gearslip](https://github.com/twinksoftware/Gearslip).
 
-A sinistra un elenco che Gearslip disegna con i suoi template: le plance di Home Assistant, le stanze, le etichette, poi le entità. A destra una vista disegnata da Plancia sulla superficie che Gearslip presta alle app con mappa: ogni luce accesa illumina la sua tessera del colore che ha davvero, le tapparelle mostrano le lamelle, gli anelli indicano luminosità e apertura, le stanze riassumono cosa c’è di acceso. Si tocca una tessera per comandarla, si scorre col dito.
+Plancia mostra le tue plance di Home Assistant vere, a tutto schermo, esattamente come le vedi nel browser o nell’app ufficiale: stesse schede, stesse viste, stesso tema. Le disegna Home Assistant stesso: Plancia ne apre il frontend sulla superficie che Gearslip presta alle app con mappa e lo autentica con il tuo token, così non chiede mai il login.
 
 ### Come si naviga
 
-- **Casa**: a sinistra le plance di Home Assistant, Stanze ed Etichette; a destra tutte le stanze.
-- **Una plancia**: le sue viste diventano stanze da aprire, nello stesso ordine che hanno in Home Assistant. Le plance generate automaticamente diventano una vista per area.
-- **Una stanza o una vista**: tutte le entità. Luci, prese, ventilatori e tapparelle si commutano con un tocco; scene e media player pure. Script, pulsanti e aspirapolvere chiedono conferma, così un tocco per sbaglio alla guida non fa partire niente. Serrature e allarmi sono in sola lettura.
-- **Aggiorna** (in alto) rilegge plance, aree ed etichette.
+- **La plancia** occupa tutto lo schermo. Si toccano le schede come sul telefono e si scorre col dito.
+- **Il menu** compare da sinistra: si apre con il pulsante ☰ di Home Assistant, in alto a sinistra, oppure con il ☰ di Plancia in alto a destra (Gearslip lo sbiadisce quando non si tocca lo schermo). Elenca le plance nello stesso ordine della barra laterale di Home Assistant, comprese Energia, Mappa, Attività e Cronologia. Se ne sceglie una e il menu si chiude mostrandola. Anche un tocco sulla plancia accanto al menu lo chiude.
+- **Plancia predefinita** (nel menu) è la plancia che si apre salendo in auto. Finché non la scegli è quella che Home Assistant apre da solo.
+- **Dimensione** (nel menu) ingrandisce o rimpicciolisce la plancia, dal 60% al 150%: più grande si legge meglio alla guida, più piccola ci stanno più schede.
+- **Ricarica la plancia** ricarica la pagina da capo.
+- **Indietro** chiude un dialogo o esce da una sottovista.
 
 ### Installazione
 
@@ -107,18 +111,20 @@ Evita un indirizzo remoto in `http://` senza VPN: il token viaggerebbe in chiaro
 
 ### Se qualcosa non va
 
-- **La colonna a sinistra c’è ma la parte destra resta vuota.** Gearslip potrebbe concedere la superficie solo ad alcune categorie di app. Nel manifest aggiungi `<category android:name="androidx.car.app.category.POI" />` accanto a quella IOT.
+- **Lo schermo resta scuro o la pagina non si carica.** La plancia gira in Android System WebView: aggiornala dal Play Store (o dallo store del tuo telefono). Se Home Assistant risponde con un errore, il messaggio compare sullo schermo dell’auto; toccalo per riprovare.
 - **Gearslip dice “host not accepted”.** La build debug accetta qualsiasi host; la release solo Gearslip ufficiale. Con un Gearslip compilato da sé, il suo digest va in `res/values/arrays.xml`.
 - **Log utili**: `adb logcat -s Plancia CarApp.Val`.
 
 ### Limiti
 
 - Funziona su Gearslip. Android Auto ufficiale non permette a un’app domotica di disegnare la propria vista: lì i template con superficie sono riservati alle app di navigazione.
-- Il token resta nelle preferenze private dell’app sul telefono.
+- Gearslip passa tocchi, scorrimenti e lanci, non i tocchi grezzi: la pressione prolungata e lo zoom con due dita non arrivano alla plancia. Per la dimensione c’è **Dimensione**.
+- In auto non c’è una tastiera per la pagina, quindi nei campi di testo (ricerca, Assist) non si può scrivere.
+- Il token resta nelle preferenze private dell’app sul telefono e va solo alle pagine del tuo Home Assistant: Plancia non apre altri siti.
 
 ### Compilare
 
-Ogni push sul ramo `main` compila l’app su GitHub Actions e, se è configurato il secret `PLANCIA_KEYSTORE` (la chiave di firma in base64), pubblica una release con i due APK. Le pull request vengono compilate per controllo, senza firma e senza release.
+Ogni push compila l’app su GitHub Actions. Sul ramo `main`, se è configurato il secret `PLANCIA_KEYSTORE` (la chiave di firma in base64), pubblica anche una release con i due APK; gli altri rami e le pull request vengono compilati solo per controllo.
 
 In locale: apri la cartella in Android Studio e premi Run. Senza `app/plancia.keystore` l’app viene firmata con la chiave di debug del proprio computer.
 
@@ -129,11 +135,9 @@ Segnalazioni e pull request sono benvenute, soprattutto da chi prova Plancia in 
 | File | Cosa contiene |
 |---|---|
 | `data/HaClient.kt` | Connessione WebSocket a Home Assistant |
-| `data/HaRepository.kt` | Stati, aree, etichette, plance, riconnessione |
-| `data/Lovelace.kt` | Lettura delle viste di una plancia |
-| `logic/Entities.kt` | Testi in italiano, comandi, cosa mostrare e in che ordine |
-| `car/render/TilePainter.kt` | Aspetto delle tessere |
-| `car/render/Colors.kt`, `Palette.kt` | Colori e temi giorno/notte |
-| `car/render/SurfaceRenderer.kt` | Griglia, scorrimento, tocchi sulla superficie |
-| `car/screens/` | Le schermate in auto |
+| `data/HaRepository.kt` | Quale indirizzo risponde (casa o remoto), plance, riconnessione |
+| `data/Panels.kt` | Le plance nell’ordine della barra laterale di Home Assistant |
+| `car/web/DashboardDisplay.kt` | Il frontend di Home Assistant sulla superficie dell’auto: display virtuale, WebView, accesso, tocchi e scorrimento |
+| `car/web/PageScripts.kt` | Il JavaScript aggiunto alla pagina: barra laterale nascosta, pulsante ☰, scorrimento |
+| `car/screens/` | Le schermate in auto: plancia a tutto schermo, menu, plancia predefinita, dimensione |
 | `phone/SettingsActivity.kt` | La schermata di configurazione sul telefono |
