@@ -1,0 +1,84 @@
+name: Compila Plancia
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il repository
+        uses: actions/checkout@v5
+
+      # Dal telefono non si possono caricare cartelle: si carica Plancia.zip
+      # e questo passaggio lo scompatta nel repository, al posto dello zip.
+      - name: Estrai Plancia.zip, se presente
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ -f Plancia.zip ]; then
+            unzip -q -o Plancia.zip -d /tmp/plancia
+            cp -r /tmp/plancia/Plancia/. .
+            git rm -q --cached --ignore-unmatch Plancia.zip
+            rm -f Plancia.zip
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            if ! git diff --cached --quiet; then
+              git commit -q -m "Aggiorna il progetto da Plancia.zip"
+              git push
+            fi
+          fi
+
+      - name: Controlla il progetto
+        run: |
+          if [ ! -f settings.gradle.kts ]; then
+            echo "Manca il progetto: carica Plancia.zip nel repository."
+            exit 1
+          fi
+
+      - name: Prepara la chiave di firma
+        env:
+          PLANCIA_KEYSTORE: ${{ secrets.PLANCIA_KEYSTORE }}
+        run: |
+          if [ -n "$PLANCIA_KEYSTORE" ]; then
+            echo "$PLANCIA_KEYSTORE" | base64 -d > app/plancia.keystore
+            echo "SIGNED=true" >> "$GITHUB_ENV"
+          else
+            echo "Nessuna chiave di firma: compilo solo per controllo, senza pubblicare."
+          fi
+
+      - name: Prepara Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Prepara Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: Compila gli APK
+        run: gradle :app:assembleDebug :app:assembleRelease --no-daemon --stacktrace
+
+      - name: Rinomina gli APK
+        if: env.SIGNED == 'true' && github.event_name != 'pull_request'
+        run: |
+          mkdir -p apk
+          cp app/build/outputs/apk/debug/app-debug.apk apk/Plancia-debug.apk
+          cp app/build/outputs/apk/release/app-release.apk apk/Plancia-release.apk
+
+      - name: Pubblica la release
+        if: env.SIGNED == 'true' && github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Plancia ${{ github.run_number }}
+          body: Installa Plancia-debug.apk. Plancia-release.apk accetta solo Gearslip ufficiale come schermo dell’auto.
+          files: apk/*.apk
