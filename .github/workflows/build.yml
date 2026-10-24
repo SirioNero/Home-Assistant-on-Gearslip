@@ -88,7 +88,8 @@ jobs:
         if: env.SIGNED == 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: build-${{ github.run_number }}
-          name: Plancia ${{ github.run_number }}
+          # Il tag è la versione dell'app (versionName in app/build.gradle.kts): Obtainium li confronta.
+          tag_name: v0.1.${{ github.run_number }}
+          name: Plancia 0.1.${{ github.run_number }}
           body: Installa Plancia-debug.apk. Plancia-release.apk accetta solo Gearslip ufficiale come schermo dell’auto.
           files: apk/*.apk

@@ -29,6 +29,8 @@ The app’s interface is in Italian for now.
    Tap “Salva e prova la connessione” (Save and test connection).
 3. In the car, open Gearslip: Plancia appears among the apps.
 
+To get updates automatically, add `https://github.com/SirioNero/Home-Assistant-on-Gearslip` to [Obtainium](https://github.com/ImranR98/Obtainium) and set the APK filter to `debug`. Each release is named after the app version (`v0.1.N`), so Obtainium can tell when an update is out.
+
 `Plancia-release.apk` is identical, but only accepts the official Gearslip as the car screen: it’s the safer choice once you’ve checked that everything works. Both versions share the same signature, so you can switch between them without uninstalling.
 
 ### Away from home
@@ -97,6 +99,8 @@ Plancia mostra le tue plance di Home Assistant vere, a tutto schermo, esattament
    - un token di accesso a lungo termine (profilo utente in Home Assistant, scheda Sicurezza).
    Premi “Salva e prova la connessione”.
 3. In auto apri Gearslip: Plancia compare tra le app.
+
+Per ricevere gli aggiornamenti in automatico, aggiungi `https://github.com/SirioNero/Home-Assistant-on-Gearslip` a [Obtainium](https://github.com/ImranR98/Obtainium) e come filtro degli APK metti `debug`. Ogni release ha il nome della versione dell’app (`v0.1.N`), così Obtainium capisce quando c’è un aggiornamento.
 
 `Plancia-release.apk` è identica ma accetta come schermo dell’auto solo Gearslip ufficiale: è la scelta più prudente una volta verificato che tutto funziona. Le due versioni hanno la stessa firma, quindi si può passare dall’una all’altra senza disinstallare.
 

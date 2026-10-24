@@ -20,6 +20,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = buildNumber
+        // Deve restare uguale al tag della release (v0.1.N nel workflow), che Obtainium confronta con l'app installata.
         versionName = "0.1.$buildNumber"
     }
 
