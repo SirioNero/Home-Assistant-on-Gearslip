@@ -2,7 +2,7 @@ name: Compila Plancia
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]
   pull_request:
   workflow_dispatch:
 
@@ -65,17 +65,27 @@ jobs:
           gradle-version: "8.9"
 
       - name: Compila gli APK
-        run: gradle :app:assembleDebug :app:assembleRelease --no-daemon --stacktrace
+        run: |
+          set -o pipefail
+          gradle :app:assembleDebug :app:assembleRelease --no-daemon --stacktrace 2>&1 | tee build.log
 
+      # Gli errori diventano un'annotazione della compilazione, leggibile senza scaricare il log.
+      - name: Riassumi gli errori
+        if: failure()
+        run: |
+          errors=$(grep -E "^e: |error:|What went wrong" -A3 build.log | head -n 80 | sed -e 's/%/%25/g' -e 's/\r//g' | sed ':a;N;$!ba;s/\n/%0A/g') || true
+          if [ -n "$errors" ]; then echo "::error title=Compilazione non riuscita::$errors"; fi
+
+      # Solo il ramo main pubblica una release: gli altri rami si compilano per controllo.
       - name: Rinomina gli APK
-        if: env.SIGNED == 'true' && github.event_name != 'pull_request'
+        if: env.SIGNED == 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           mkdir -p apk
           cp app/build/outputs/apk/debug/app-debug.apk apk/Plancia-debug.apk
           cp app/build/outputs/apk/release/app-release.apk apk/Plancia-release.apk
 
       - name: Pubblica la release
-        if: env.SIGNED == 'true' && github.event_name != 'pull_request'
+        if: env.SIGNED == 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}

@@ -8,36 +8,41 @@ import androidx.car.app.Screen
 import androidx.car.app.Session
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import it.plancia.ha.PlanciaApp
-import it.plancia.ha.car.render.SurfaceRenderer
-import it.plancia.ha.car.screens.HomeScreen
+import it.plancia.ha.car.screens.DashboardScreen
+import it.plancia.ha.car.web.DashboardDisplay
+import kotlinx.coroutines.launch
 
 class PlanciaSession : Session() {
 
-    private var renderer: SurfaceRenderer? = null
+    private var display: DashboardDisplay? = null
 
     override fun onCreateScreen(intent: Intent): Screen {
-        val repo = (carContext.applicationContext as PlanciaApp).repo
-        val surfaceRenderer = SurfaceRenderer(carContext, repo)
-        renderer = surfaceRenderer
+        val app = carContext.applicationContext as PlanciaApp
+        val repo = app.repo
+        val dashboard = DashboardDisplay(carContext, repo, app.settings)
+        display = dashboard
         try {
-            carContext.getCarService(AppManager::class.java).setSurfaceCallback(surfaceRenderer)
+            carContext.getCarService(AppManager::class.java).setSurfaceCallback(dashboard)
         } catch (e: Exception) {
-            // Senza superficie resta comunque l'elenco a sinistra.
             Log.w("Plancia", "L'host non concede la superficie", e)
         }
         repo.acquire()
+        lifecycleScope.launch {
+            // Connesso, disconnesso, passato dall'indirizzo di casa a quello remoto: la pagina segue.
+            repo.connection.collect { dashboard.onConnectionChanged() }
+        }
         lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onDestroy(owner: LifecycleOwner) {
                 repo.release()
-                surfaceRenderer.release()
+                dashboard.release()
             }
         })
-        return HomeScreen(carContext, CarDeps(repo, surfaceRenderer))
+        return DashboardScreen(carContext, CarDeps(repo, app.settings, dashboard))
     }
 
     override fun onCarConfigurationChanged(newConfiguration: Configuration) {
-        // Giorno/notte: la superficie cambia palette al prossimo fotogramma.
-        renderer?.requestDraw()
+        display?.onCarConfigurationChanged()
     }
 }

@@ -70,15 +70,6 @@ class HaClient(private val http: OkHttpClient) {
         }
     }
 
-    suspend fun callService(domain: String, service: String, entityId: String, data: JSONObject? = null) {
-        command("call_service") {
-            put("domain", domain)
-            put("service", service)
-            put("target", JSONObject().put("entity_id", entityId))
-            if (data != null) put("service_data", data)
-        }
-    }
-
     fun close() {
         socket?.close(1000, null)
         shutdown("Connessione chiusa")

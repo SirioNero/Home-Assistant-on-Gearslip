@@ -3,9 +3,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- Servono per ricevere la superficie su cui disegnare la vista della casa. -->
+    <!-- Servono per ricevere la superficie su cui disegnare la plancia e per mostrarla a tutto schermo. -->
     <uses-permission android:name="androidx.car.app.ACCESS_SURFACE" />
     <uses-permission android:name="androidx.car.app.MAP_TEMPLATES" />
+    <uses-permission android:name="androidx.car.app.NAVIGATION_TEMPLATES" />
 
     <application
         android:name=".PlanciaApp"

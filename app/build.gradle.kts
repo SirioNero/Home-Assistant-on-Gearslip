@@ -65,6 +65,7 @@ android {
 
 dependencies {
     implementation("androidx.car.app:app:1.7.0")
+    implementation("androidx.webkit:webkit:1.12.1")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
