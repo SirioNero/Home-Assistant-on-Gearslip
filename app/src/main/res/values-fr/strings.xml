@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">Home Assistant sur l’écran de votre voiture, via Gearslip.</string>
+    <string name="label_language">Langue</string>
+    <string name="label_home">Adresse à la maison</string>
+    <string name="label_remote">Adresse hors de la maison (facultatif)</string>
+    <string name="label_token">Jeton d’accès de longue durée</string>
+    <string name="hint_remote">https://…ui.nabu.casa ou l’adresse du VPN</string>
+    <string name="hint_token">Collez le jeton ici</string>
+    <string name="help_token">Créez-le dans Home Assistant : votre profil, onglet Sécurité, Jetons d’accès de longue durée.</string>
+    <string name="help_remote">En voiture, le téléphone n’est pas sur le réseau de la maison : Plancia essaie d’abord l’adresse de la maison, puis l’adresse distante.</string>
+    <string name="save">Enregistrer et tester la connexion</string>
+    <string name="help_car">Dans la voiture, ouvrez Gearslip : Plancia apparaît parmi les applis.</string>
+    <string name="status_incomplete">Il faut au moins une adresse et le jeton.</string>
+    <string name="status_testing">Test de la connexion…</string>
+    <string name="place_home">Maison</string>
+    <string name="place_remote">Hors de la maison</string>
+    <string name="error_unknown">erreur inconnue</string>
+    <string name="error_bad_address">Adresse non valide : %1$s</string>
+    <string name="error_no_answer_from">Aucune réponse de %1$s</string>
+    <string name="error_not_responding">Home Assistant ne répond pas</string>
+    <string name="error_invalid_token">Jeton non valide</string>
+    <string name="error_access_denied">Accès refusé</string>
+    <string name="error_http">Erreur HTTP %1$s</string>
+    <string name="error_network">Erreur réseau : %1$s</string>
+    <string name="error_closed">Connexion fermée</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s : Home Assistant %2$s, %3$d entité</item>
+        <item quantity="other">✓ %1$s : Home Assistant %2$s, %3$d entités</item>
+    </plurals>
+</resources>

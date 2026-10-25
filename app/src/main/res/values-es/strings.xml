@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">Home Assistant en la pantalla de tu coche, a través de Gearslip.</string>
+    <string name="label_language">Idioma</string>
+    <string name="label_home">Dirección de casa</string>
+    <string name="label_remote">Dirección fuera de casa (opcional)</string>
+    <string name="label_token">Token de acceso de larga duración</string>
+    <string name="hint_remote">https://…ui.nabu.casa o la dirección de la VPN</string>
+    <string name="hint_token">Pega aquí el token</string>
+    <string name="help_token">Créalo en Home Assistant: tu perfil, pestaña Seguridad, Tokens de acceso de larga duración.</string>
+    <string name="help_remote">En el coche el teléfono está fuera de la red de casa: Plancia prueba primero la dirección de casa y luego la remota.</string>
+    <string name="save">Guardar y probar la conexión</string>
+    <string name="help_car">En el coche, abre Gearslip: Plancia aparece entre las apps.</string>
+    <string name="status_incomplete">Hace falta al menos una dirección y el token.</string>
+    <string name="status_testing">Probando la conexión…</string>
+    <string name="place_home">Casa</string>
+    <string name="place_remote">Fuera de casa</string>
+    <string name="error_unknown">error desconocido</string>
+    <string name="error_bad_address">Dirección no válida: %1$s</string>
+    <string name="error_no_answer_from">Sin respuesta de %1$s</string>
+    <string name="error_not_responding">Home Assistant no responde</string>
+    <string name="error_invalid_token">Token no válido</string>
+    <string name="error_access_denied">Acceso denegado</string>
+    <string name="error_http">Error HTTP %1$s</string>
+    <string name="error_network">Error de red: %1$s</string>
+    <string name="error_closed">Conexión cerrada</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s: Home Assistant %2$s, %3$d entidad</item>
+        <item quantity="other">✓ %1$s: Home Assistant %2$s, %3$d entidades</item>
+    </plurals>
+</resources>

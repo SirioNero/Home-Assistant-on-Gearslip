@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Plancia</string>
-    <string name="tagline">Home Assistant sullo schermo dell’auto, tramite Gearslip.</string>
-    <string name="label_home">Indirizzo di casa</string>
-    <string name="label_remote">Indirizzo da fuori casa (facoltativo)</string>
-    <string name="label_token">Token di accesso a lungo termine</string>
-    <string name="hint_home">http://homeassistant.local:8123</string>
-    <string name="hint_remote">https://…ui.nabu.casa oppure l’indirizzo VPN</string>
-    <string name="hint_token">Incolla qui il token</string>
-    <string name="help_token">Crealo in Home Assistant: il tuo profilo, scheda Sicurezza, Token di accesso a lungo termine.</string>
-    <string name="help_remote">In auto il telefono è fuori dalla rete di casa: Plancia prova prima l’indirizzo di casa, poi quello remoto.</string>
-    <string name="save">Salva e prova la connessione</string>
-    <string name="help_car">In auto apri Gearslip: Plancia compare tra le app.</string>
+    <string name="app_name" translatable="false">Plancia</string>
+    <string name="hint_home" translatable="false">http://homeassistant.local:8123</string>
+    <string name="status_failed" translatable="false">✗ %1$s: %2$s</string>
+    <string name="tagline">Home Assistant on your car screen, through Gearslip.</string>
+    <string name="label_language">Language</string>
+    <string name="label_home">Home address</string>
+    <string name="label_remote">Address away from home (optional)</string>
+    <string name="label_token">Long-lived access token</string>
+    <string name="hint_remote">https://…ui.nabu.casa or your VPN address</string>
+    <string name="hint_token">Paste the token here</string>
+    <string name="help_token">Create it in Home Assistant: your profile, Security tab, Long-lived access tokens.</string>
+    <string name="help_remote">In the car your phone is off your home network: Plancia tries the home address first, then the remote one.</string>
+    <string name="save">Save and test the connection</string>
+    <string name="help_car">In the car, open Gearslip: Plancia appears among the apps.</string>
+    <string name="status_incomplete">You need at least one address and the token.</string>
+    <string name="status_testing">Testing the connection…</string>
+    <string name="place_home">Home</string>
+    <string name="place_remote">Away from home</string>
+    <string name="error_unknown">unknown error</string>
+    <string name="error_bad_address">Invalid address: %1$s</string>
+    <string name="error_no_answer_from">No answer from %1$s</string>
+    <string name="error_not_responding">Home Assistant is not responding</string>
+    <string name="error_invalid_token">Invalid token</string>
+    <string name="error_access_denied">Access denied</string>
+    <string name="error_http">HTTP error %1$s</string>
+    <string name="error_network">Network error: %1$s</string>
+    <string name="error_closed">Connection closed</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s: Home Assistant %2$s, %3$d entity</item>
+        <item quantity="other">✓ %1$s: Home Assistant %2$s, %3$d entities</item>
+    </plurals>
 </resources>

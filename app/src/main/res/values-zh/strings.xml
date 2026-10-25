@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">通过 Gearslip，在车载屏幕上使用 Home Assistant。</string>
+    <string name="label_language">语言</string>
+    <string name="label_home">家中地址</string>
+    <string name="label_remote">外出时的地址（可选）</string>
+    <string name="label_token">长期访问令牌</string>
+    <string name="hint_remote">https://…ui.nabu.casa 或 VPN 地址</string>
+    <string name="hint_token">在此粘贴令牌</string>
+    <string name="help_token">在 Home Assistant 中创建：你的个人资料，“安全”选项卡，“长期访问令牌”。</string>
+    <string name="help_remote">在车上手机不在家庭网络中：Plancia 会先尝试家中地址，再尝试外出地址。</string>
+    <string name="save">保存并测试连接</string>
+    <string name="help_car">在车上打开 Gearslip：Plancia 会出现在应用列表中。</string>
+    <string name="status_incomplete">至少需要一个地址和令牌。</string>
+    <string name="status_testing">正在测试连接…</string>
+    <string name="place_home">家中</string>
+    <string name="place_remote">外出</string>
+    <string name="error_unknown">未知错误</string>
+    <string name="error_bad_address">地址无效：%1$s</string>
+    <string name="error_no_answer_from">%1$s 没有响应</string>
+    <string name="error_not_responding">Home Assistant 没有响应</string>
+    <string name="error_invalid_token">令牌无效</string>
+    <string name="error_access_denied">访问被拒绝</string>
+    <string name="error_http">HTTP 错误 %1$s</string>
+    <string name="error_network">网络错误：%1$s</string>
+    <string name="error_closed">连接已关闭</string>
+    <plurals name="status_ok">
+        <item quantity="other">✓ %1$s：Home Assistant %2$s，%3$d 个实体</item>
+    </plurals>
+</resources>

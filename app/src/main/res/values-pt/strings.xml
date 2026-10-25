@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">O Home Assistant na tela do seu carro, pelo Gearslip.</string>
+    <string name="label_language">Idioma</string>
+    <string name="label_home">Endereço de casa</string>
+    <string name="label_remote">Endereço fora de casa (opcional)</string>
+    <string name="label_token">Token de acesso de longa duração</string>
+    <string name="hint_remote">https://…ui.nabu.casa ou o endereço da VPN</string>
+    <string name="hint_token">Cole o token aqui</string>
+    <string name="help_token">Crie-o no Home Assistant: seu perfil, aba Segurança, Tokens de acesso de longa duração.</string>
+    <string name="help_remote">No carro o celular fica fora da rede de casa: o Plancia tenta primeiro o endereço de casa e depois o remoto.</string>
+    <string name="save">Salvar e testar a conexão</string>
+    <string name="help_car">No carro, abra o Gearslip: o Plancia aparece entre os apps.</string>
+    <string name="status_incomplete">É preciso pelo menos um endereço e o token.</string>
+    <string name="status_testing">Testando a conexão…</string>
+    <string name="place_home">Casa</string>
+    <string name="place_remote">Fora de casa</string>
+    <string name="error_unknown">erro desconhecido</string>
+    <string name="error_bad_address">Endereço inválido: %1$s</string>
+    <string name="error_no_answer_from">Sem resposta de %1$s</string>
+    <string name="error_not_responding">O Home Assistant não responde</string>
+    <string name="error_invalid_token">Token inválido</string>
+    <string name="error_access_denied">Acesso negado</string>
+    <string name="error_http">Erro HTTP %1$s</string>
+    <string name="error_network">Erro de rede: %1$s</string>
+    <string name="error_closed">Conexão encerrada</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s: Home Assistant %2$s, %3$d entidade</item>
+        <item quantity="other">✓ %1$s: Home Assistant %2$s, %3$d entidades</item>
+    </plurals>
+</resources>

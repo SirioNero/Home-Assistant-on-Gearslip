@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">Το Home Assistant στην οθόνη του αυτοκινήτου σας, μέσω του Gearslip.</string>
+    <string name="label_language">Γλώσσα</string>
+    <string name="label_home">Διεύθυνση στο σπίτι</string>
+    <string name="label_remote">Διεύθυνση εκτός σπιτιού (προαιρετικό)</string>
+    <string name="label_token">Διακριτικό πρόσβασης μακράς διαρκείας</string>
+    <string name="hint_remote">https://…ui.nabu.casa ή η διεύθυνση του VPN</string>
+    <string name="hint_token">Επικολλήστε εδώ το διακριτικό</string>
+    <string name="help_token">Δημιουργήστε το στο Home Assistant: το προφίλ σας, καρτέλα Ασφάλεια, Διακριτικά πρόσβασης μακράς διαρκείας.</string>
+    <string name="help_remote">Στο αυτοκίνητο το τηλέφωνο είναι εκτός οικιακού δικτύου: το Plancia δοκιμάζει πρώτα τη διεύθυνση του σπιτιού και μετά την απομακρυσμένη.</string>
+    <string name="save">Αποθήκευση και δοκιμή σύνδεσης</string>
+    <string name="help_car">Στο αυτοκίνητο ανοίξτε το Gearslip: το Plancia εμφανίζεται ανάμεσα στις εφαρμογές.</string>
+    <string name="status_incomplete">Χρειάζεται τουλάχιστον μία διεύθυνση και το διακριτικό.</string>
+    <string name="status_testing">Δοκιμή σύνδεσης…</string>
+    <string name="place_home">Σπίτι</string>
+    <string name="place_remote">Εκτός σπιτιού</string>
+    <string name="error_unknown">άγνωστο σφάλμα</string>
+    <string name="error_bad_address">Μη έγκυρη διεύθυνση: %1$s</string>
+    <string name="error_no_answer_from">Καμία απάντηση από %1$s</string>
+    <string name="error_not_responding">Το Home Assistant δεν αποκρίνεται</string>
+    <string name="error_invalid_token">Μη έγκυρο διακριτικό</string>
+    <string name="error_access_denied">Δεν επιτρέπεται η πρόσβαση</string>
+    <string name="error_http">Σφάλμα HTTP %1$s</string>
+    <string name="error_network">Σφάλμα δικτύου: %1$s</string>
+    <string name="error_closed">Η σύνδεση έκλεισε</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s: Home Assistant %2$s, %3$d οντότητα</item>
+        <item quantity="other">✓ %1$s: Home Assistant %2$s, %3$d οντότητες</item>
+    </plurals>
+</resources>

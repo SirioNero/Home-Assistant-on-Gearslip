@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">Home Assistant auf dem Bildschirm deines Autos, über Gearslip.</string>
+    <string name="label_language">Sprache</string>
+    <string name="label_home">Adresse zu Hause</string>
+    <string name="label_remote">Adresse unterwegs (optional)</string>
+    <string name="label_token">Langlebiges Zugangs-Token</string>
+    <string name="hint_remote">https://…ui.nabu.casa oder die VPN-Adresse</string>
+    <string name="hint_token">Token hier einfügen</string>
+    <string name="help_token">Erstelle es in Home Assistant: dein Profil, Reiter Sicherheit, Langlebige Zugangs-Token.</string>
+    <string name="help_remote">Im Auto ist das Handy nicht im Heimnetz: Plancia versucht zuerst die Adresse zu Hause, dann die für unterwegs.</string>
+    <string name="save">Speichern und Verbindung testen</string>
+    <string name="help_car">Öffne im Auto Gearslip: Plancia erscheint bei den Apps.</string>
+    <string name="status_incomplete">Es braucht mindestens eine Adresse und das Token.</string>
+    <string name="status_testing">Verbindung wird getestet…</string>
+    <string name="place_home">Zu Hause</string>
+    <string name="place_remote">Unterwegs</string>
+    <string name="error_unknown">unbekannter Fehler</string>
+    <string name="error_bad_address">Ungültige Adresse: %1$s</string>
+    <string name="error_no_answer_from">Keine Antwort von %1$s</string>
+    <string name="error_not_responding">Home Assistant antwortet nicht</string>
+    <string name="error_invalid_token">Ungültiges Token</string>
+    <string name="error_access_denied">Zugriff verweigert</string>
+    <string name="error_http">HTTP-Fehler %1$s</string>
+    <string name="error_network">Netzwerkfehler: %1$s</string>
+    <string name="error_closed">Verbindung geschlossen</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s: Home Assistant %2$s, %3$d Entität</item>
+        <item quantity="other">✓ %1$s: Home Assistant %2$s, %3$d Entitäten</item>
+    </plurals>
+</resources>

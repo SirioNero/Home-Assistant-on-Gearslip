@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tagline">Home Assistant на экране вашего автомобиля через Gearslip.</string>
+    <string name="label_language">Язык</string>
+    <string name="label_home">Адрес дома</string>
+    <string name="label_remote">Адрес вне дома (необязательно)</string>
+    <string name="label_token">Долгосрочный токен доступа</string>
+    <string name="hint_remote">https://…ui.nabu.casa или адрес VPN</string>
+    <string name="hint_token">Вставьте токен сюда</string>
+    <string name="help_token">Создайте его в Home Assistant: ваш профиль, вкладка «Безопасность», «Долгосрочные токены доступа».</string>
+    <string name="help_remote">В машине телефон вне домашней сети: Plancia сначала пробует домашний адрес, затем удалённый.</string>
+    <string name="save">Сохранить и проверить подключение</string>
+    <string name="help_car">В машине откройте Gearslip: Plancia появится среди приложений.</string>
+    <string name="status_incomplete">Нужны хотя бы один адрес и токен.</string>
+    <string name="status_testing">Проверяю подключение…</string>
+    <string name="place_home">Дом</string>
+    <string name="place_remote">Вне дома</string>
+    <string name="error_unknown">неизвестная ошибка</string>
+    <string name="error_bad_address">Неверный адрес: %1$s</string>
+    <string name="error_no_answer_from">Нет ответа от %1$s</string>
+    <string name="error_not_responding">Home Assistant не отвечает</string>
+    <string name="error_invalid_token">Недействительный токен</string>
+    <string name="error_access_denied">Доступ запрещён</string>
+    <string name="error_http">Ошибка HTTP %1$s</string>
+    <string name="error_network">Ошибка сети: %1$s</string>
+    <string name="error_closed">Соединение закрыто</string>
+    <plurals name="status_ok">
+        <item quantity="one">✓ %1$s: Home Assistant %2$s, %3$d объект</item>
+        <item quantity="few">✓ %1$s: Home Assistant %2$s, %3$d объекта</item>
+        <item quantity="many">✓ %1$s: Home Assistant %2$s, %3$d объектов</item>
+        <item quantity="other">✓ %1$s: Home Assistant %2$s, %3$d объекта</item>
+    </plurals>
+</resources>

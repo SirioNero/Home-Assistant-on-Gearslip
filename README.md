@@ -8,7 +8,7 @@ Home Assistant on your car screen, through [Gearslip](https://github.com/twinkso
 
 Plancia shows your real Home Assistant dashboards, full screen, exactly as they look in the browser or in the official app: same cards, same views, same theme. Home Assistant draws them itself; Plancia puts its frontend on the surface Gearslip lends to map apps and signs it in with your token, so it never asks you to log in.
 
-The app’s interface is in Italian for now.
+The phone settings screen is available in nine languages; the in-car menu is in Italian for now.
 
 ### Getting around
 
@@ -22,7 +22,7 @@ The app’s interface is in Italian for now.
 ### Installation
 
 1. From the [Releases](../../releases) page, download `Plancia-debug.apk` to your phone and install it. Android asks you to allow installing unknown apps; Play Protect may warn that the app is unknown.
-2. Open Plancia on your phone and enter:
+2. Open Plancia on your phone, pick your language at the top (English, Italian, Spanish, German, French, Portuguese, Greek, Russian or Chinese; English until you choose) and enter:
    - your Home Assistant address at home, for example `http://homeassistant.local:8123`;
    - the address to use away from home (see below);
    - a long-lived access token (your Home Assistant user profile, Security tab).
@@ -93,7 +93,7 @@ Plancia mostra le tue plance di Home Assistant vere, a tutto schermo, esattament
 ### Installazione
 
 1. Dalla pagina [Releases](../../releases) scarica `Plancia-debug.apk` sul telefono e installalo. Android chiede di consentire l’installazione di app sconosciute; Play Protect può avvisare che l’app non è nota.
-2. Apri Plancia sul telefono e inserisci:
+2. Apri Plancia sul telefono, scegli la lingua in alto (inglese, italiano, spagnolo, tedesco, francese, portoghese, greco, russo o cinese; finché non scegli è in inglese) e inserisci:
    - l’indirizzo di casa di Home Assistant, per esempio `http://homeassistant.local:8123`;
    - l’indirizzo da fuori casa (vedi sotto);
    - un token di accesso a lungo termine (profilo utente in Home Assistant, scheda Sicurezza).
