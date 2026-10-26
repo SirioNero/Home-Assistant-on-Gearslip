@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Host autorizzati nella build release: Gearslip ufficiale.
+    <!-- Host autorizzati nella build release: Gearslip ufficiale e myCar.
          Ogni voce è il digest SHA-256 del certificato di firma, una virgola, poi il nome del pacchetto.
          Se usi un Gearslip compilato da te, metti qui il digest del tuo APK (lo stampa apksigner verify).
          La build debug accetta qualsiasi host. -->
