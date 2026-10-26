@@ -6,5 +6,8 @@
          La build debug accetta qualsiasi host. -->
     <string-array name="hosts_allowlist">
         <item>4cc56ebdd13a54d260eca9b7e2b2ae6b30e2f225bfda8f508f0709edf084948b,app.seb3thehacker.gearslip</item>
+        <!-- myCar (github.com/SirioNero/MyCar), release e debug: stessa chiave di firma. -->
+        <item>e477a4794b984927360e9ae4a31e87cb08a26c54e0e27e4334116d1c7cdccc31,io.github.sirionero.mycar</item>
+        <item>e477a4794b984927360e9ae4a31e87cb08a26c54e0e27e4334116d1c7cdccc31,io.github.sirionero.mycar.dev</item>
     </string-array>
 </resources>

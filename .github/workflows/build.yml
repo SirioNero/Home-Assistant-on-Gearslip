@@ -91,5 +91,5 @@ jobs:
           # Il tag è la versione dell'app (versionName in app/build.gradle.kts): Obtainium li confronta.
           tag_name: v0.1.${{ github.run_number }}
           name: Plancia 0.1.${{ github.run_number }}
-          body: Installa Plancia-debug.apk. Plancia-release.apk accetta solo Gearslip ufficiale come schermo dell’auto.
+          body: Installa Plancia-debug.apk. Plancia-release.apk accetta solo Gearslip ufficiale o myCar come schermo dell’auto.
           files: apk/*.apk

@@ -31,7 +31,7 @@ The phone settings screen is available in nine languages; the in-car menu is in 
 
 To get updates automatically, add `https://github.com/SirioNero/Home-Assistant-on-Gearslip` to [Obtainium](https://github.com/ImranR98/Obtainium) and set the APK filter to `debug`. Each release is named after the app version (`v0.1.N`), so Obtainium can tell when an update is out.
 
-`Plancia-release.apk` is identical, but only accepts the official Gearslip as the car screen: it’s the safer choice once you’ve checked that everything works. Both versions share the same signature, so you can switch between them without uninstalling.
+`Plancia-release.apk` is identical, but only accepts the official Gearslip or myCar as the car screen: it’s the safer choice once you’ve checked that everything works. Both versions share the same signature, so you can switch between them without uninstalling.
 
 ### Away from home
 
@@ -45,7 +45,7 @@ Avoid a plain `http://` remote address without a VPN: your token would travel un
 ### Troubleshooting
 
 - **The screen stays dark or the page doesn’t load.** The dashboard runs in Android System WebView: update it from the Play Store (or your phone’s app store). If Home Assistant answers with an error, the message shows on the car screen; tap it to try again.
-- **Gearslip says “host not accepted”.** The debug build accepts any host; the release build accepts only the official Gearslip. If you built Gearslip yourself, put its digest in `res/values/arrays.xml`.
+- **Gearslip says “host not accepted”.** The debug build accepts any host; the release build accepts only the official Gearslip or myCar. If you built Gearslip yourself, put its digest in `res/values/arrays.xml`.
 - **Useful logs**: `adb logcat -s Plancia CarApp.Val`.
 
 ### Limitations
@@ -102,7 +102,7 @@ Plancia mostra le tue plance di Home Assistant vere, a tutto schermo, esattament
 
 Per ricevere gli aggiornamenti in automatico, aggiungi `https://github.com/SirioNero/Home-Assistant-on-Gearslip` a [Obtainium](https://github.com/ImranR98/Obtainium) e come filtro degli APK metti `debug`. Ogni release ha il nome della versione dell’app (`v0.1.N`), così Obtainium capisce quando c’è un aggiornamento.
 
-`Plancia-release.apk` è identica ma accetta come schermo dell’auto solo Gearslip ufficiale: è la scelta più prudente una volta verificato che tutto funziona. Le due versioni hanno la stessa firma, quindi si può passare dall’una all’altra senza disinstallare.
+`Plancia-release.apk` è identica ma accetta come schermo dell’auto solo Gearslip ufficiale o myCar: è la scelta più prudente una volta verificato che tutto funziona. Le due versioni hanno la stessa firma, quindi si può passare dall’una all’altra senza disinstallare.
 
 ### Fuori casa
 
@@ -116,7 +116,7 @@ Evita un indirizzo remoto in `http://` senza VPN: il token viaggerebbe in chiaro
 ### Se qualcosa non va
 
 - **Lo schermo resta scuro o la pagina non si carica.** La plancia gira in Android System WebView: aggiornala dal Play Store (o dallo store del tuo telefono). Se Home Assistant risponde con un errore, il messaggio compare sullo schermo dell’auto; toccalo per riprovare.
-- **Gearslip dice “host not accepted”.** La build debug accetta qualsiasi host; la release solo Gearslip ufficiale. Con un Gearslip compilato da sé, il suo digest va in `res/values/arrays.xml`.
+- **Gearslip dice “host not accepted”.** La build debug accetta qualsiasi host; la release solo Gearslip ufficiale o myCar. Con un Gearslip compilato da sé, il suo digest va in `res/values/arrays.xml`.
 - **Log utili**: `adb logcat -s Plancia CarApp.Val`.
 
 ### Limiti
