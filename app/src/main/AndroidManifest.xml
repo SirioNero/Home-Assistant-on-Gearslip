@@ -34,6 +34,12 @@
             </intent-filter>
         </service>
 
+        <!-- L'account di Home Assistant per myCar, che ha Plancia dentro di sé: risponde solo a myCar. -->
+        <provider
+            android:name=".data.AccountProvider"
+            android:authorities="it.plancia.ha.account"
+            android:exported="true" />
+
         <activity
             android:name=".phone.SettingsActivity"
             android:exported="true"
