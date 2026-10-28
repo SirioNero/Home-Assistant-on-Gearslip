@@ -42,6 +42,8 @@ In the car your phone is on mobile data, so the home address doesn’t respond. 
 
 Avoid a plain `http://` remote address without a VPN: your token would travel unencrypted.
 
+With myCar, which has Plancia built in: to connect to the car wirelessly, myCar has to be left out of Tailscale (inside a VPN, Android keeps it off the car’s Wi-Fi), and then it can’t reach a Home Assistant on your tailnet by itself. Plancia, inside Tailscale, opens those connections for myCar: only for myCar, checked by its signature, and only to the Home Assistant set up here. Use the same address in both.
+
 ### Troubleshooting
 
 - **The screen stays dark or the page doesn’t load.** The dashboard runs in Android System WebView: update it from the Play Store (or your phone’s app store). If Home Assistant answers with an error, the message shows on the car screen; tap it to try again.
@@ -112,6 +114,8 @@ In auto il telefono usa la rete mobile, quindi l’indirizzo di casa non rispond
 - una VPN sul telefono (WireGuard, Tailscale) e l’indirizzo di Home Assistant raggiungibile attraverso di essa.
 
 Evita un indirizzo remoto in `http://` senza VPN: il token viaggerebbe in chiaro.
+
+Con myCar, che ha Plancia dentro di sé: per collegarsi all’auto senza fili myCar va lasciata fuori da Tailscale (dentro una VPN Android non le dà il Wi-Fi dell’auto), e allora da sola non raggiunge un Home Assistant sulla tua tailnet. Plancia, dentro Tailscale, apre quelle connessioni per myCar: solo per myCar, controllandone la firma, e solo verso l’Home Assistant configurato qui. Usa lo stesso indirizzo in tutte e due.
 
 ### Se qualcosa non va
 
