@@ -42,7 +42,8 @@ import kotlin.concurrent.thread
  * firma: serve alle prove in CI.
  *
  * myCar fa: bindService(Intent("io.github.sirionero.mycar.BRIDGE").setPackage("it.plancia.ha"), ...),
- * poi transact(OPEN) con l'interfaccia [DESCRIPTOR], host e porta; risposta 1 e il socket, o 0 e il motivo.
+ * poi transact(OPEN) con l'interfaccia [DESCRIPTOR], host e porta; risposta [OK] e il socket, o il codice
+ * del rifiuto ([NOT_MYCAR], [NOT_OURS], [NO_ANSWER], [OTHER]) e il motivo.
  */
 class MyCarBridge : Service() {
 
@@ -58,11 +59,11 @@ class MyCarBridge : Service() {
                 return true
             }
             result.onSuccess { socket ->
-                reply.writeInt(1)
+                reply.writeInt(OK)
                 socket.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE)
             }.onFailure { e ->
                 Log.w(TAG, "Ponte per myCar verso $host:$port: ${e.message}")
-                reply.writeInt(0)
+                reply.writeInt((e as? Refusal)?.code ?: OTHER)
                 reply.writeString(e.message ?: e.javaClass.simpleName)
             }
             return true
@@ -74,16 +75,16 @@ class MyCarBridge : Service() {
     /** La connessione verso [host]:[port], per myCar: l'altro capo di un socket locale. */
     private fun open(uid: Int, host: String, port: Int): ParcelFileDescriptor {
         val caller = packageManager.getPackagesForUid(uid).orEmpty().firstOrNull { isMyCar(this, it) }
-            ?: throw SecurityException("il ponte è solo per myCar")
+            ?: throw Refusal(NOT_MYCAR, "il ponte è solo per myCar")
         val urls = (applicationContext as PlanciaApp).settings.load().urls
-        if (!allowed(urls, host, port)) throw IOException("$host:$port non è l'Home Assistant di Plancia")
+        if (!allowed(urls, host, port)) throw Refusal(NOT_OURS, "$host:$port non è l'Home Assistant di Plancia")
         val socket = Socket()
         try {
             socket.connect(InetSocketAddress(host, port), CONNECT_TIMEOUT_MS)
             socket.tcpNoDelay = true
         } catch (e: IOException) {
             runCatching { socket.close() }
-            throw IOException("Home Assistant a $host:$port non risponde a Plancia (${e.message})", e)
+            throw Refusal(NO_ANSWER, "Home Assistant a $host:$port non risponde a Plancia (${e.message})")
         }
         val (mine, theirs) = ParcelFileDescriptor.createSocketPair()
         relay(socket, mine)
@@ -137,6 +138,9 @@ class MyCarBridge : Service() {
         }
     }
 
+    /** Un rifiuto, col codice che myCar trasforma nelle sue parole. */
+    private class Refusal(val code: Int, message: String) : Exception(message)
+
     companion object {
         private const val TAG = "Plancia"
 
@@ -145,6 +149,13 @@ class MyCarBridge : Service() {
 
         /** Apri una connessione: host (String), porta (Int). */
         const val OPEN = IBinder.FIRST_CALL_TRANSACTION
+
+        /** Le risposte: il socket, o il codice del rifiuto e il motivo. */
+        const val OK = 1
+        const val OTHER = 0
+        const val NOT_MYCAR = 2
+        const val NOT_OURS = 3
+        const val NO_ANSWER = 4
 
         private const val CONNECT_TIMEOUT_MS = 10_000
         private const val BUFFER = 16 * 1024
