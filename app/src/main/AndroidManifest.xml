@@ -40,6 +40,16 @@
             android:authorities="it.plancia.ha.account"
             android:exported="true" />
 
+        <!-- Il ponte per myCar lasciata fuori da Tailscale: le sue connessioni verso Home Assistant
+             passano da qui. Risponde solo a myCar (vedi MyCarBridge). -->
+        <service
+            android:name=".data.MyCarBridge"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="io.github.sirionero.mycar.BRIDGE" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".phone.SettingsActivity"
             android:exported="true"
